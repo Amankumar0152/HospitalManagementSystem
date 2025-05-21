@@ -1,0 +1,1 @@
+Our Hospital Management System is dedicated to providing seamless healthcare management for hospitals of all sizes. We help manage doctors, patients, appointments, billing, and medical records efficiently and securely. With a focus on patient care and operational excellence, our system ensures that hospitals can deliver the best possible service.
