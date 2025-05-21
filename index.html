@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f8fb;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background: #1976d2;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a.active, .nav-links a:hover {
+            color: #ffd600;
+        }
+        .hero {
+            background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1rem 2rem 1rem;
+        }
+        .hero h1 {
+            margin: 0 0 1rem 0;
+            font-size: 2.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+            background: #ffd600;
+            color: #1976d2;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #fff176;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+        }
+        .patient-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .patient-section h2 {
+            margin-bottom: 0.5rem;
+        }
+        #problemForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        #problemForm select, #problemForm button {
+            width: 100%;
+        }
+        #doctorResult {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: #1976d2;
+            min-height: 2rem;
+        }
+        .services, .departments, .testimonials {
+            margin: 2.5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            color: #1976d2;
+        }
+        .services-list, .departments-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .service, .department {
+            background: #f4f8fb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 250px;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.05);
+            text-align: center;
+        }
+        .service i, .department i {
+            font-size: 2.5rem;
+            color: #1976d2;
+            margin-bottom: 0.7rem;
+        }
+        .testimonials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .testimonial {
+            background: #f4f8fb;
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            width: 320px;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.05);
+            font-style: italic;
+        }
+        .testimonial .author {
+            margin-top: 0.8rem;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        @media (max-width: 900px) {
+            .container {
+                padding: 1rem;
+            }
+            .services-list, .departments-list, .testimonials-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .container {
+                margin: 1rem;
+                padding: 0.5rem;
+            }
+            .service, .department, .testimonial {
+                width: 100%;
+            }
+        }
+    </style>
+    <!-- Optionally use Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Hospital Management System</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="pages/doctors.html">Doctors</a></li>
+            <li><a href="pages/patients.html">Patients</a></li>
+            <li><a href="pages/about.html">About</a></li>
+        </ul>
+    </nav>
+    <header class="hero">
+        <h1>Hospital Management System</h1>
+        <p>A modern, efficient platform for managing doctors, patients, appointments, and more.</p>
+        <a href="pages/doctors.html" class="btn">Get Started</a>
+    </header>
+
+    <div class="container">
+        <main class="patient-section">
+            <h2>Patient Check-In</h2>
+            <p>If you are a patient and want to meet a doctor, please select your problem below:</p>
+            <form id="problemForm">
+                <label for="problem">Select Your Problem:</label>
+                <select id="problem" name="problem" required>
+                    <option value="">--Select Problem--</option>
+                    <option value="fever">Fever</option>
+                    <option value="cough">Cough</option>
+                    <option value="headache">Headache</option>
+                    <option value="stomach">Stomach Pain</option>
+                    <option value="skin">Skin Issue</option>
+                    <option value="eye">Eye Problem</option>
+                    <option value="heart">Heart Issue</option>
+                    <option value="bone">Bone/Joint Pain</option>
+                    <option value="child">Child Specialist</option>
+                </select>
+                <button type="submit" class="btn">Show Doctor</button>
+            </form>
+            <div id="doctorResult"></div>
+        </main>
+
+        <!-- Emergency Patients quick find doctors -->
+        <section class="emergency">
+            <h2>Emergency Patients Check-In</h2>
+            <p>If you are an emergency patient, please call our emergency number: <strong>+91 9565194075</strong></p>
+            <p>Or visit our emergency department directly.</p>
+            <form id="emergencyForm" style="margin-top:1rem; display:flex; flex-direction:column; align-items:center; gap:1rem; max-width:400px; width:100%;">
+                <label for="emergencyProblem">Select Emergency Problem:</label>
+                <select id="emergencyProblem" name="emergencyProblem" required style="width:100%;">
+                    <option value="">--Select Emergency--</option>
+                    <option value="heart_attack">Heart Attack</option>
+                    <option value="stroke">Stroke</option>
+                    <option value="accident">Accident/Trauma</option>
+                    <option value="breathing">Breathing Difficulty</option>
+                    <option value="bleeding">Severe Bleeding</option>
+                    <option value="burns">Severe Burns</option>
+                    <option value="unconscious">Unconsciousness</option>
+                </select>
+                <button type="submit" class="btn" style="width:100%;">Find Doctors</button>
+            </form>
+        </section>
+        <script>
+            document.getElementById('emergencyForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const problem = document.getElementById('emergencyProblem').value;
+                if (problem) {
+                    // Redirect to emergency doctors page with query params
+                    window.location.href = `pages/emergency_doctors.html?problem=${encodeURIComponent(problem)}`;
+                }
+            });
+        </script>
+        <style>
+            .emergency {
+                background: #fff3e0;
+                border-radius: 12px;
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+                box-shadow: 0 2px 8px rgba(255, 167, 38, 0.08);
+                text-align: center;
+            }
+            .emergency h2 {
+                color: #e65100;
+                margin-bottom: 0.5rem;
+            }
+            @media (max-width: 600px) {
+                .emergency {
+                    padding: 1rem 0.5rem;
+                }
+            }
+        </style>
+
+        <section class="services">
+            <div class="section-title">Our Services</div>
+            <div class="services-list">
+                <div class="service">
+                    <i class="fas fa-user-md"></i>
+                    <h3>24/7 Emergency</h3>
+                    <p>Round-the-clock emergency care with experienced staff and modern facilities.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Online Appointments</h3>
+                    <p>Book appointments with doctors online and avoid long waiting times.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-vials"></i>
+                    <h3>Diagnostics</h3>
+                    <p>Advanced laboratory and diagnostic services for accurate results.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-ambulance"></i>
+                    <h3>Ambulance Service</h3>
+                    <p>Quick and reliable ambulance service for emergencies.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="departments">
+            <div class="section-title">Departments</div>
+            <div class="departments-list">
+                <div class="department">
+                    <i class="fas fa-heartbeat"></i>
+                    <h4>Cardiology</h4>
+                    <p>Heart care and advanced cardiac treatments.</p>
+                </div>
+                <div class="department">
+                    <i class="fas fa-brain"></i>
+                    <h4>Neurology</h4>
+                    <p>Brain and nervous system care.</p>
+                </div>
+                <div class="department">
+                    <i class="fas fa-bone"></i>
+                    <h4>Orthopedics</h4>
+                    <p>Bone, joint, and muscle treatments.</p>
+                </div>
+                <div class="department">
+                    <i class="fas fa-child"></i>
+                    <h4>Pediatrics</h4>
+                    <p>Child health and specialist care.</p>
+                </div>
+                <div class="department">
+                    <i class="fas fa-eye"></i>
+                    <h4>Ophthalmology</h4>
+                    <p>Eye care and vision correction.</p>
+                </div>
+                <div class="department">
+                    <i class="fas fa-allergies"></i>
+                    <h4>Dermatology</h4>
+                    <p>Skin care and treatments.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="section-title">What Our Patients Say</div>
+            <div class="testimonials-list">
+                <div class="testimonial">
+                    "The doctors and staff were very helpful and caring. The online appointment system is a lifesaver!"
+                    <div class="author">- Priya S.</div>
+                </div>
+                <div class="testimonial">
+                    "Clean facilities, quick service, and expert doctors. Highly recommended!"
+                    <div class="author">- Rahul K.</div>
+                </div>
+                <div class="testimonial">
+                    "I got the best treatment for my child. Thank you for the excellent pediatric care."
+                    <div class="author">- Meena T.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const doctorMap = {
+            fever: "Dr. Sharma (General Physician)",
+            cough: "Dr. Sharma (General Physician)",
+            headache: "Dr. Mehta (Neurologist)",
+            stomach: "Dr. Gupta (Gastroenterologist)",
+            skin: "Dr. Singh (Dermatologist)",
+            eye: "Dr. Verma (Ophthalmologist)",
+            heart: "Dr. Kapoor (Cardiologist)",
+            bone: "Dr. Rao (Orthopedic Surgeon)",
+            child: "Dr. Joshi (Pediatrician)"
+        };
+
+        document.getElementById('problemForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const problem = document.getElementById('problem').value;
+            const resultDiv = document.getElementById('doctorResult');
+            if (doctorMap[problem]) {
+                resultDiv.innerHTML = `<strong>Recommended Doctor:</strong> ${doctorMap[problem]}`;
+            } else {
+                resultDiv.innerHTML = "Please select a problem to see the recommended doctor.";
+            }
+        });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

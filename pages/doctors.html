@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors - Hospital Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .doctors-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .doctor-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+        .doctor-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .doctor-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #4CAF50;
+        }
+        .doctor-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        .doctor-degree, .doctor-specialist, .doctor-address {
+            font-size: 0.98rem;
+            margin-bottom: 0.2rem;
+            color: #555;
+            text-align: center;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 0 0;
+        }
+        .search-bar input[type="text"] {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem 0 0 0.5rem;
+            outline: none;
+            width: 250px;
+        }
+        .search-bar button {
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            border: none;
+            background: #4CAF50;
+            color: #fff;
+            border-radius: 0 0.5rem 0.5rem 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover {
+            background: #388e3c;
+        }
+        @media (max-width: 700px) {
+            .doctors-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .doctor-card {
+                width: 90vw;
+            }
+            .search-bar input[type="text"] {
+                width: 60vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Hospital Management System</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a class="active" href="doctors.html">Doctors</a></li>
+            <li><a href="patients.html">Patients</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h1>Our Doctors</h1>
+        <p>This system lists all registered doctors and their information.</p>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="doctorSearch" placeholder="Search by specialty, disease, or name...">
+        <button onclick="searchDoctors()">Search</button>
+    </div>
+    <div class="doctors-list" id="doctorsList">
+        <!-- Doctor cards will be rendered here -->
+    </div>
+    <script>
+        // Doctor data
+        const doctors = [
+            {
+                photo: "https://randomuser.me/api/portraits/men/32.jpg",
+                name: "Dr. Rajesh Singh",
+                degree: "MBBS, MD (Medicine)",
+                specialist: "General Physician",
+                address: "BHU Campus, Varanasi, Uttar Pradesh",
+                keywords: "general physician medicine fever cough"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/women/44.jpg",
+                name: "Dr. Anjali Sharma",
+                degree: "MBBS, MS (Gynecology)",
+                specialist: "Gynecologist",
+                address: "Sigra, Varanasi, Uttar Pradesh",
+                keywords: "gynecologist gynecology women pregnancy"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/men/45.jpg",
+                name: "Dr. Amit Kumar",
+                degree: "MBBS, MS (Orthopedics)",
+                specialist: "Orthopedic Surgeon",
+                address: "Lanka, Varanasi, Uttar Pradesh",
+                keywords: "orthopedic orthopedics bones fracture"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/women/65.jpg",
+                name: "Dr. Priya Verma",
+                degree: "MBBS, MD (Pediatrics)",
+                specialist: "Pediatrician",
+                address: "Assi Ghat, Varanasi, Uttar Pradesh",
+                keywords: "pediatrician children kids"
+            },
+            // Heart attack specialists
+            {
+                photo: "https://randomuser.me/api/portraits/men/50.jpg",
+                name: "Dr. Suresh Gupta",
+                degree: "MBBS, DM (Cardiology)",
+                specialist: "Cardiologist",
+                address: "Cantonment, Varanasi, Uttar Pradesh",
+                keywords: "cardiologist heart attack heartattack heart disease chest pain"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/women/51.jpg",
+                name: "Dr. Meena Joshi",
+                degree: "MBBS, DM (Cardiology)",
+                specialist: "Cardiologist",
+                address: "Bhelupur, Varanasi, Uttar Pradesh",
+                keywords: "cardiologist heart attack heartattack heart disease chest pain"
+            },
+            // More doctors
+            {
+                photo: "https://randomuser.me/api/portraits/men/60.jpg",
+                name: "Dr. Arvind Mishra",
+                degree: "MBBS, MD (Dermatology)",
+                specialist: "Dermatologist",
+                address: "Godowlia, Varanasi, Uttar Pradesh",
+                keywords: "dermatologist skin allergy rash"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/women/61.jpg",
+                name: "Dr. Kavita Singh",
+                degree: "MBBS, MS (ENT)",
+                specialist: "ENT Specialist",
+                address: "Pandeypur, Varanasi, Uttar Pradesh",
+                keywords: "ent ear nose throat"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/men/62.jpg",
+                name: "Dr. Manoj Yadav",
+                degree: "MBBS, MD (Neurology)",
+                specialist: "Neurologist",
+                address: "Sigra, Varanasi, Uttar Pradesh",
+                keywords: "neurologist brain nerves stroke"
+            },
+            {
+                photo: "https://randomuser.me/api/portraits/women/63.jpg",
+                name: "Dr. Ritu Pandey",
+                degree: "MBBS, MD (Psychiatry)",
+                specialist: "Psychiatrist",
+                address: "Lahurabir, Varanasi, Uttar Pradesh",
+                keywords: "psychiatrist mental health depression anxiety"
+            }
+        ];
+
+        function renderDoctors(list) {
+            const container = document.getElementById('doctorsList');
+            container.innerHTML = '';
+            if (list.length === 0) {
+                container.innerHTML = '<div style="text-align:center;width:100%">No doctors found.</div>';
+                return;
+            }
+            list.forEach(doc => {
+                const card = document.createElement('div');
+                card.className = 'doctor-card';
+                card.innerHTML = `
+                    <img class="doctor-photo" src="${doc.photo}" alt="${doc.name}">
+                    <div class="doctor-name">${doc.name}</div>
+                    <div class="doctor-degree">${doc.degree}</div>
+                    <div class="doctor-specialist">${doc.specialist}</div>
+                    <div class="doctor-address">${doc.address}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function searchDoctors() {
+            const query = document.getElementById('doctorSearch').value.trim().toLowerCase();
+            if (!query) {
+                renderDoctors(doctors);
+                return;
+            }
+            const filtered = doctors.filter(doc =>
+                doc.name.toLowerCase().includes(query) ||
+                doc.degree.toLowerCase().includes(query) ||
+                doc.specialist.toLowerCase().includes(query) ||
+                doc.address.toLowerCase().includes(query) ||
+                doc.keywords.toLowerCase().includes(query)
+            );
+            renderDoctors(filtered);
+        }
+
+        // Show all doctors on page load
+        renderDoctors(doctors);
+
+        // Optional: Enable search on pressing Enter
+        document.getElementById('doctorSearch').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') searchDoctors();
+        });
+    </script>
+</body>
+</html>

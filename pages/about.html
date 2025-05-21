@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Hospital Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+        }
+        .hero {
+            margin: 40px auto 20px auto;
+            padding: 30px 20px;
+            
+            border-radius: 12px;
+            max-width: 800px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .section {
+            margin: 30px auto;
+            padding: 25px 18px;
+            background: #fff;
+            border-radius: 10px;
+            max-width: 800px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .doctors-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .doctor-card {
+            background: #f1f3f6;
+            border-radius: 8px;
+            padding: 18px 14px;
+            width: 220px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            margin-bottom: 10px;
+        }
+        .doctor-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .doctor-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 4px;
+        }
+        .doctor-specialty {
+            color: #555;
+            font-size: 0.97em;
+            margin-bottom: 6px;
+        }
+        .doctor-desc {
+            font-size: 0.93em;
+            color: #666;
+        }
+        @media (max-width: 600px) {
+            .hero, .section {
+                padding: 15px 5px;
+                max-width: 98vw;
+            }
+            .doctors-list {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .doctor-card {
+                width: 95vw;
+                margin: 0 auto 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Hospital Management System</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="patients.html">Patients</a></li>
+            <li><a class="active" href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h1>About Our Hospital Management System</h1>
+        <p>
+            Our Hospital Management System is dedicated to providing seamless healthcare management for hospitals of all sizes. 
+            We help manage doctors, patients, appointments, billing, and medical records efficiently and securely. 
+            With a focus on patient care and operational excellence, our system ensures that hospitals can deliver the best possible service.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Our Doctors</h2>
+        <p>
+            We are proud to have a team of highly qualified and experienced doctors who are committed to patient well-being. 
+            Our doctors are recognized for their expertise, compassion, and dedication. Many of them are renowned specialists and have received national and international recognition.
+        </p>
+        <div class="doctors-list">
+            <div class="doctor-card">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Rajesh Sharma">
+                <div class="doctor-name">Dr. Rajesh Sharma</div>
+                <div class="doctor-specialty">Cardiologist</div>
+                <div class="doctor-desc">Award-winning heart specialist with 20+ years of experience. Known for advanced cardiac care and research.</div>
+            </div>
+            <div class="doctor-card">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Priya Mehta">
+                <div class="doctor-name">Dr. Priya Mehta</div>
+                <div class="doctor-specialty">Neurologist</div>
+                <div class="doctor-desc">Famous for her expertise in treating complex neurological disorders. Highly respected in her field.</div>
+            </div>
+            <div class="doctor-card">
+                <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Dr. Amit Verma">
+                <div class="doctor-name">Dr. Amit Verma</div>
+                <div class="doctor-specialty">Orthopedic Surgeon</div>
+                <div class="doctor-desc">Best known for minimally invasive surgeries and excellent patient outcomes.</div>
+            </div>
+            <div class="doctor-card">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dr. Sunita Rao">
+                <div class="doctor-name">Dr. Sunita Rao</div>
+                <div class="doctor-specialty">Pediatrician</div>
+                <div class="doctor-desc">Beloved by children and parents alike for her gentle approach and deep knowledge.</div>
+            </div>
+            <div class="doctor-card">
+                <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Dr. Vikram Singh">
+                <div class="doctor-name">Dr. Vikram Singh</div>
+                <div class="doctor-specialty">General Surgeon</div>
+                <div class="doctor-desc">Renowned for his surgical skills and leadership in hospital operations.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Why Choose Us?</h2>
+        <ul style="list-style: none; padding: 0; margin: 0 auto; max-width: 600px;">
+            <li style="margin-bottom: 10px;">✔ Modern and secure hospital management software</li>
+            <li style="margin-bottom: 10px;">✔ Experienced and caring medical staff</li>
+            <li style="margin-bottom: 10px;">✔ 24/7 emergency support and patient care</li>
+            <li style="margin-bottom: 10px;">✔ Easy appointment scheduling and follow-ups</li>
+            <li style="margin-bottom: 10px;">✔ Comprehensive patient records and privacy</li>
+            <li style="margin-bottom: 10px;">✔ Continuous improvement and innovation</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Our Mission</h2>
+        <p>
+            To deliver world-class healthcare solutions through technology, compassion, and excellence. 
+            We strive to make hospital management simple, efficient, and patient-focused.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Contact Us</h2>
+        <p>
+            Have questions or need support? <br>
+            Email: <a href="mailto:mauryakunj999@gmail.com">Mauryakunj999@gmail.com</a> <br>
+            Phone: +91 95549 11368
+        </p>
+    </div>
+</body>
+</html></div>

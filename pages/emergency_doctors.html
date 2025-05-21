@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Doctors</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #f4f8fb;
+        }
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 24px 12px 40px 12px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 32px;
+            color: #4a5568;
+            font-size: 1.08em;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+        .search-bar input[type="text"] {
+            width: 260px;
+            padding: 10px 14px;
+            border: 1px solid #bfc9d1;
+            border-radius: 6px 0 0 6px;
+            font-size: 1em;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .search-bar button {
+            padding: 10px 18px;
+            border: none;
+            background: #2563eb;
+            color: #fff;
+            font-size: 1em;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover {
+            background: #1e40af;
+        }
+        .doctors-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .doctor-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+            padding: 22px 18px 18px 18px;
+            width: 270px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s;
+            position: relative;
+        }
+        .doctor-card:hover {
+            box-shadow: 0 4px 18px rgba(44, 62, 80, 0.15);
+        }
+        .doctor-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e0e7ef 60%, #c7d2fe 100%);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            color: #2563eb;
+        }
+        .doctor-name {
+            font-size: 1.18em;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+        .doctor-speciality {
+            color: #2563eb;
+            margin-bottom: 8px;
+            font-size: 1em;
+            font-weight: 500;
+            text-align: center;
+        }
+        .doctor-desc {
+            color: #4a5568;
+            font-size: 0.97em;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .contact-btn {
+            display: inline-block;
+            padding: 7px 18px;
+            background: #16a34a;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.98em;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .contact-btn:hover {
+            background: #15803d;
+        }
+        @media (max-width: 900px) {
+            .doctors-list {
+                gap: 18px;
+            }
+            .doctor-card {
+                width: 45vw;
+                min-width: 220px;
+                max-width: 320px;
+            }
+        }
+        @media (max-width: 600px) {
+            .doctors-list {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .doctor-card {
+                width: 100%;
+                min-width: 0;
+            }
+            .container {
+                padding: 12px 4px 30px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emergency Doctors</h1>
+        <div class="intro">
+            Our dedicated emergency doctors are available 24/7 to provide immediate care for any patient in need. Each doctor specializes in emergency medicine and is trained to handle critical situations with expertise and compassion. Use the search below to quickly find a doctor by name or speciality.
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by name or speciality...">
+            <button onclick="searchDoctors()">Search</button>
+        </div>
+        <div class="doctors-list" id="doctorsList">
+            <!-- Doctor cards below -->
+            <div class="doctor-card" data-name="Rajesh Sharma" data-speciality="Emergency Medicine Specialist">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Rajesh Sharma</div>
+                <div class="doctor-speciality">Emergency Medicine Specialist</div>
+                <div class="doctor-desc">Over 15 years of experience in trauma and acute care. Expert in rapid assessment and stabilization of critical patients.</div>
+                <a class="contact-btn" href="mailto:rajesh.sharma@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Priya Verma" data-speciality="Pediatric Emergency">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Priya Verma</div>
+                <div class="doctor-speciality">Pediatric Emergency</div>
+                <div class="doctor-desc">Specializes in pediatric emergencies, providing compassionate care to children and infants in urgent situations.</div>
+                <a class="contact-btn" href="mailto:priya.verma@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Amit Singh" data-speciality="Cardiac Emergencies">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Amit Singh</div>
+                <div class="doctor-speciality">Cardiac Emergencies</div>
+                <div class="doctor-desc">Expert in handling heart attacks and cardiac arrests, ensuring immediate intervention and advanced cardiac life support.</div>
+                <a class="contact-btn" href="mailto:amit.singh@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Neha Gupta" data-speciality="Trauma Care">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Neha Gupta</div>
+                <div class="doctor-speciality">Trauma Care</div>
+                <div class="doctor-desc">Highly skilled in trauma management, including road accidents and severe injuries, with a calm and efficient approach.</div>
+                <a class="contact-btn" href="mailto:neha.gupta@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Suresh Kumar" data-speciality="Critical Care">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Suresh Kumar</div>
+                <div class="doctor-speciality">Critical Care</div>
+                <div class="doctor-desc">Specializes in intensive care and life-threatening emergencies, providing advanced monitoring and support.</div>
+                <a class="contact-btn" href="mailto:suresh.kumar@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Anjali Mehta" data-speciality="Toxicology Emergencies">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Anjali Mehta</div>
+                <div class="doctor-speciality">Toxicology Emergencies</div>
+                <div class="doctor-desc">Expert in treating poisoning and overdose cases, ensuring quick diagnosis and effective antidote administration.</div>
+                <a class="contact-btn" href="mailto:anjali.mehta@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Vikram Patel" data-speciality="Neurological Emergencies">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Vikram Patel</div>
+                <div class="doctor-speciality">Neurological Emergencies</div>
+                <div class="doctor-desc">Handles stroke, seizures, and head injuries with prompt evaluation and intervention.</div>
+                <a class="contact-btn" href="mailto:vikram.patel@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Ritu Malhotra" data-speciality="Respiratory Emergencies">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Ritu Malhotra</div>
+                <div class="doctor-speciality">Respiratory Emergencies</div>
+                <div class="doctor-desc">Specializes in acute asthma, COPD attacks, and respiratory distress, providing immediate airway management.</div>
+                <a class="contact-btn" href="mailto:ritu.malhotra@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Manoj Joshi" data-speciality="Orthopedic Emergencies">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Manoj Joshi</div>
+                <div class="doctor-speciality">Orthopedic Emergencies</div>
+                <div class="doctor-desc">Expert in managing fractures, dislocations, and musculoskeletal injuries in emergency settings.</div>
+                <a class="contact-btn" href="mailto:manoj.joshi@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Shalini Rao" data-speciality="Burn & Wound Care">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Shalini Rao</div>
+                <div class="doctor-speciality">Burn & Wound Care</div>
+                <div class="doctor-desc">Experienced in treating burns, lacerations, and other acute wounds with advanced care techniques.</div>
+                <a class="contact-btn" href="mailto:shalini.rao@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Arvind Nair" data-speciality="General Emergency">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Arvind Nair</div>
+                <div class="doctor-speciality">General Emergency</div>
+                <div class="doctor-desc">Versatile emergency physician skilled in handling a wide range of acute medical and surgical emergencies.</div>
+                <a class="contact-btn" href="mailto:arvind.nair@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Kavita Desai" data-speciality="Obstetric Emergencies">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Kavita Desai</div>
+                <div class="doctor-speciality">Obstetric Emergencies</div>
+                <div class="doctor-desc">Specializes in emergency care for pregnant women, including labor complications and urgent deliveries.</div>
+                <a class="contact-btn" href="mailto:kavita.desai@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Sanjay Bansal" data-speciality="Infectious Disease Emergencies">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Sanjay Bansal</div>
+                <div class="doctor-speciality">Infectious Disease Emergencies</div>
+                <div class="doctor-desc">Expert in managing sepsis, severe infections, and outbreak situations in the emergency department.</div>
+                <a class="contact-btn" href="mailto:sanjay.bansal@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Meera Kapoor" data-speciality="Psychiatric Emergencies">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Meera Kapoor</div>
+                <div class="doctor-speciality">Psychiatric Emergencies</div>
+                <div class="doctor-desc">Handles acute mental health crises, providing immediate support and stabilization for patients in distress.</div>
+                <a class="contact-btn" href="mailto:meera.kapoor@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Deepak Sethi" data-speciality="Surgical Emergencies">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Deepak Sethi</div>
+                <div class="doctor-speciality">Surgical Emergencies</div>
+                <div class="doctor-desc">Experienced in emergency surgeries, including appendicitis, perforations, and trauma-related procedures.</div>
+                <a class="contact-btn" href="mailto:deepak.sethi@hospital.com">Contact</a>
+            </div>
+            <!-- Add more doctors as needed -->
+            <div class="doctor-card" data-name="Ayesha Khan" data-speciality="Allergic Reactions">
+                <div class="doctor-photo">👩‍⚕️</div>
+                <div class="doctor-name">Dr. Ayesha Khan</div>
+                <div class="doctor-speciality">Allergic Reactions</div>
+                <div class="doctor-desc">Specialist in managing severe allergic reactions and anaphylaxis with rapid intervention.</div>
+                <a class="contact-btn" href="mailto:ayesha.khan@hospital.com">Contact</a>
+            </div>
+            <div class="doctor-card" data-name="Rohit Chawla" data-speciality="Gastrointestinal Emergencies">
+                <div class="doctor-photo">👨‍⚕️</div>
+                <div class="doctor-name">Dr. Rohit Chawla</div>
+                <div class="doctor-speciality">Gastrointestinal Emergencies</div>
+                <div class="doctor-desc">Expert in acute abdominal pain, GI bleeding, and related emergencies.</div>
+                <a class="contact-btn" href="mailto:rohit.chawla@hospital.com">Contact</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function searchDoctors() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.doctor-card');
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const speciality = card.getAttribute('data-speciality').toLowerCase();
+                if (name.includes(input) || speciality.includes(input)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        document.getElementById('searchInput').addEventListener('input', searchDoctors);
+    </script>
+</body>
+</html>
